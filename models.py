@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 # database_path = "postgres://aar92_22@localhost:5432/agencyDB"
 database_path = os.environ['DATABASE_URL']
