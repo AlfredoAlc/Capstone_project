@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 
-database_path = "postgres://aar92_22@localhost:5432/agencyDB"
+# database_path = "postgres://aar92_22@localhost:5432/agencyDB"
+database_path = os.environ['DATABASE_URL']
 
 db = SQLAlchemy()
 
