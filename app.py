@@ -215,3 +215,6 @@ def create_app(test_config=None):
         }), 404
 
     return app
+
+app = create_app()
+app.run()
