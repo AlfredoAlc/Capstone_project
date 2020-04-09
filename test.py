@@ -13,7 +13,10 @@ class AgencyTestCase(unittest.TestCase):
         self.app = create_app()
         self.client = self.app.test_client
         # self.database_path = 'postgres://aar92_22@localhost:5432/agencyDB'
-        self.database_path = 'postgres://brzinsrjvqanxj:099037d3051ff596dca879154af40cc2a7b78d02a3c158f93099a8d5682fa300@ec2-18-235-20-228.compute-1.amazonaws.com:5432/d14h8n7lsu2pem'
+        self.database_path = ('postgres://brzinsrjvqanxj:099037d3051ff596dca'
+                              '879154af40cc2a7b78d02a3c158f93099a8d5682fa300'
+                              '@ec2-18-235-20-228.compute-1.amazonaws.com:54'
+                              '32/d14h8n7lsu2pem')
         setup_db(self.app, self.database_path)
 
         with self.app.app_context():

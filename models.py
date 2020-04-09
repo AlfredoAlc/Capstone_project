@@ -2,7 +2,10 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 # database_path = "postgres://aar92_22@localhost:5432/agencyDB"
-database_path = 'postgres://brzinsrjvqanxj:099037d3051ff596dca879154af40cc2a7b78d02a3c158f93099a8d5682fa300@ec2-18-235-20-228.compute-1.amazonaws.com:5432/d14h8n7lsu2pem'
+database_path = ('postgres://brzinsrjvqanxj:099037d3051ff596dc'
+                 'a879154af40cc2a7b78d02a3c158f93099a8d5682fa3'
+                 '00@ec2-18-235-20-228.compute-1.amazonaws.com'
+                 ':5432/d14h8n7lsu2pem')
 
 db = SQLAlchemy()
 
