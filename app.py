@@ -1,9 +1,8 @@
-from flask import Flask, request, jsonify, abort, json
+from flask import Flask, request, jsonify, abort, json, redirect
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 import json
 from auth import AuthError, requires_auth
-
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -15,12 +14,58 @@ def create_app(test_config=None):
     @app.after_request
     def after_request(response):
 
+        excecutive_producer_token = ('bearer eyJhbGciOiJSUzI1NiIsInR5cCI'
+                                     '6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ'
+                                     '01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5'
+                                     'rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3Mi'
+                                     'OiJodHRwczovL2Rldi1rYWY4MTBsby5hdX'
+                                     'RoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4'
+                                     'M2ZmNzM2YjI2OWEwYmRjMDhjYWFkIiwiYX'
+                                     'VkIjoiYWdlbmN5IiwiaWF0IjoxNTg2Mzg3'
+                                     'MDQyLCJleHAiOjE1ODY0NzM0NDIsImF6cC'
+                                     'I6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAy'
+                                     'OXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZX'
+                                     'JtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3Jz'
+                                     'IiwiZGVsZXRlOm1vdmllcyIsImdldDphY3'
+                                     'RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6'
+                                     'YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG'
+                                     '9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJd'
+                                     'fQ.XJEBjc2qJT8rC24TszQmWFaeJFfnWpD'
+                                     'wJv7ZwIhysfku5ej5rD0yT7VtXRPQXNcPr'
+                                     'VXiuAekZXZM9fFIpfkll8M3bpZh8TqtCRO'
+                                     '079RAUAoNkkWj1LlR1pn49nFU3nVtsS3pJ'
+                                     'YLA5zvUPdMQ9B_RK-Az5AULP_EXqE_r7T3'
+                                     'fKzvIpjl2tkgiBYN9Bt4cSjAErh1yxfFvx'
+                                     'dWUYt3EiMhVADyLqIbtupx9lyi8S9Qlj5T'
+                                     'hfqJr8nqoTjF5AuDeofe5SIlDs0wMWe3oJ'
+                                     'opfMrMatv4lX6pcdbHS9PBADdcWsMjAoMl'
+                                     'cMNAbCl6v5mTc2t9fD1B6St01vOFnn_TTW'
+                                     '2V5ug')
+
         response.headers.add(
             'Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
         response.headers.add(
             'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
 
         return response
+
+
+    @app.route('/')
+    def index():
+
+        return redirect('https://dev-kaf810lo.auth0.com/authorize?audience=agency&response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
+
+
+    @app.route('/login-results')
+    def login():
+
+        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&connection=null&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
+
+
+    @app.route('/logout')
+    def logout():
+
+        return redirect('https://dev-kaf810lo.auth0.com/v2/logout?client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo=https://capstone-project-agency.herokuapp.com')
 
 # ____________Movies endpoints____________
 
