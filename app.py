@@ -38,7 +38,7 @@ def create_app(test_config=None):
 
         return jsonify({
             'success': True
-            'Auth': request.get('token')
+            'Auth': response.get('token')
         })
 
        
