@@ -8,7 +8,6 @@ def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
-    oauth = OAuth(app)
 
     # db_drop_and_create_all()
 
