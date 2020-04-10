@@ -11,7 +11,11 @@ def create_app(test_config=None):
 
     # db_drop_and_create_all()
 
-   
+    @app.route('/')
+    def index():
+
+        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
+
     @app.after_request
     def after_request(response):
 
