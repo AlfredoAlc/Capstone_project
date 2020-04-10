@@ -46,11 +46,12 @@ def create_app(test_config=None):
 
         req = base_url + "/oauth/token", data
         '''
-        req = https://dev-kaf810lo.auth0.com/oauth/token/client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency&grant_type=client_credentials
+        req = 'https://dev-kaf810lo.auth0.com/oauth/token/client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency&grant_type=client_credentials'
         response = urlopen(requ)
         oauth = json.loads(response.read())
         access_token = oauth['access_token']
 
+        req = 'https://dev-kaf810lo.auth0.com/api/v2/clients'
         req.add_header('Authorization', 'Bearer ' + access_token)
         req.add_header('Content-Type', 'application/json')
         
