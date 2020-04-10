@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, abort, json, redirect
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 import json
+import resquests
 from auth import AuthError, requires_auth
 
 def create_app(test_config=None):
@@ -26,7 +27,7 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        res = request.get('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
+        res = requests.get('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
         return redirect(res)
 
     @app.route('/login-results')
