@@ -3,6 +3,7 @@ from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 import json
 from auth import AuthError, requires_auth
+import http.client
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -30,6 +31,19 @@ def create_app(test_config=None):
 
     @app.route('/login-results')
     def login():
+
+        conn = http.client.HTTPSConnection("")
+
+        payload = "{\"initiate_login_uri\": \"<login_url>\"}"
+
+        headers = {
+        'content-type': "application/json",
+        'authorization': "Bearer API2_ACCESS_TOKEN",
+        'cache-control': "no-cache"
+        }
+
+        conn.request("PATCH", "/dev-kaf810lo.auth0.com/api/v2/clients/1KaU8dYzCUMHaNy6RzexWuDpwyoE4hNE", payload, headers)
+
 
         return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
 
