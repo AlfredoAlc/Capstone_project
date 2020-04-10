@@ -45,16 +45,13 @@ def create_app(test_config=None):
 
     @app.route('/login-results')
     def login():
-        try:
-            auth0.authorize_access_token()
-            resp = auth0.get('userinfo')
-            userinfo = resp.json()
+        
+        auth0.authorize_access_token()
+        resp = auth0.get('userinfo')
+        userinfo = resp.json()
 
 
-            return userinfo
-
-        except:
-            abort (400)
+        return userinfo
 
 
     @app.route('/logout')
