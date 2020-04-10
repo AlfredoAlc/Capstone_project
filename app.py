@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify, abort, json, redirect
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
-import json, http.client
 from auth import AuthError, requires_auth
+import http.client
+
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -25,10 +26,25 @@ def create_app(test_config=None):
     @app.route('/')
     
     def index():
-        auth_header = {'Authorization': <Access Token>}
 
-        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
+        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
 
+
+    @app.route('/login-results')
+    def login_results():
+        conn = http.client.HTTPSConnection("")
+
+        payload = "grant_type=client_credentials&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency"
+
+        headers = { 'content-type': "application/x-www-form-urlencoded" }
+
+        conn.request("POST", "/dev-kaf810lo.auth0.com/oauth/token", payload, headers)
+
+        res = conn.getresponse()
+        data = res.read()
+
+        print(data.decode("utf-8"))
+        return data
        
     @app.route('/logout')
     def logout():
