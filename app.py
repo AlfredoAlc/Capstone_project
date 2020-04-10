@@ -50,7 +50,7 @@ def create_app(test_config=None):
         userinfo = resp.json()
 
         response['Authorization']=userinfo
-        return redirect('/movies')
+        return jsonify(userinfo)
 
         
     @app.route('/logout')
