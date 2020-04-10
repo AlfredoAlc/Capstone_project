@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify, abort, json, redirect
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
-import json, urllib, requests
-from urllib.request import urlopen
+import json, http.client
 from auth import AuthError, requires_auth
 
 def create_app(test_config=None):
@@ -31,30 +30,17 @@ def create_app(test_config=None):
 
     @app.route('/login-results')
     def login():
-        '''
-        AUDIENCE = "https://dev-kaf810lo.auth0.com/api/v2/"
-        DOMAIN = "dev-kaf810lo.auth0.com"
-        CLIENT_ID = "1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ"
-        CLIENT_SECRET = "Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH"
-        GRANT_TYPE = "client_credentials" 
+       
+        conn = http.client.HTTPSConnection("")
 
-        base_url = "https://{domain}".format(domain=DOMAIN)
-        data = urllib.urlencode([('client_id', CLIENT_ID),
-                                ('client_secret', CLIENT_SECRET),
-                                ('audience', AUDIENCE),
-                                ('grant_type', GRANT_TYPE)])
+        payload = "grant_type=client_credentials&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency"
 
-        req = base_url + "/oauth/token", data
-        '''
-        req = f'https://dev-kaf810lo.auth0.com/oauth/token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency&grant_type=client_credentials'
-        response = urlopen(req)
-        oauth = json.loads(response.read())
-        access_token = oauth['access_token']
+        headers = { 'content-type': "application/x-www-form-urlencoded" }
 
-        req = 'https://dev-kaf810lo.auth0.com/api/v2/clients'
-        req.add_header('Authorization', 'Bearer ' + access_token)
-        req.add_header('Content-Type', 'application/json')
-        
+        conn.request("POST", "/dev-kaf810lo.auth0.com/oauth/token", payload, headers)
+
+        res = conn.getresponse()
+
 
         return jsonify({
             'success': True
