@@ -23,7 +23,7 @@ def create_app(test_config=None):
         return response
 
     @app.route('/')
-    @app.after_request(response)
+    @after_request(response)
     def index():
 
         return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
