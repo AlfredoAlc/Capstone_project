@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify, abort, json, redirect
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
-import json
-import http.client
+import json, urllib, urllib2
 from auth import AuthError, requires_auth
 
 def create_app(test_config=None):
