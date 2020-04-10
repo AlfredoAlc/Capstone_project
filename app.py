@@ -27,16 +27,16 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        res = requests.get('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
-        return redirect(res)
+        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
 
     @app.route('/login-results')
     def login():
 
-       
+       res = request.get('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo&redirect_urihttps://localhost:5000/movies')
 
         return jsonify({
             'success': True
+            'headers': res.headers
         })
 
        
