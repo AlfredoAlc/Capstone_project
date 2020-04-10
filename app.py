@@ -50,9 +50,7 @@ def create_app(test_config=None):
         resp = auth0.get('userinfo')
         userinfo = resp.json()
 
-        response['Authorization']=userinfo
 
-        print(userinfo)
         return jsonify(userinfo)
 
         
