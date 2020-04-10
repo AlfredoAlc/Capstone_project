@@ -47,12 +47,14 @@ def create_app(test_config=None):
     def login():
 
         auth0.authorize_access_token()
-        resp = auth0.get('userinfo')
-        userinfo = resp.json()
+        # resp = auth0.get('userinfo')
+        # userinfo = resp.json()
 
-        return jsonify(userinfo)
+        return jsonify({
+            'success': True
+        })
 
-        
+       
     @app.route('/logout')
     def logout():
 
