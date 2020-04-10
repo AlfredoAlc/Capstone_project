@@ -3,7 +3,6 @@ from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 import json
 from auth import AuthError, requires_auth
-from authlib.integrations.flask_client import OAuth
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -13,18 +12,7 @@ def create_app(test_config=None):
 
     # db_drop_and_create_all()
 
-    auth0 = oauth.register(
-        'auth0',
-        client_id='1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ',
-        client_secret='Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH',
-        api_base_url='https://dev-kaf810lo.auth0.com',
-        access_token_url='https://dev-kaf810lo.auth0.com/oauth/token',
-        authorize_url='https://dev-kaf810lo.auth0.com/authorize',
-        client_kwargs={
-            'scope': 'openid profile email',
-        },
-    )
-
+   
     @app.after_request
     def after_request(response):
 
@@ -46,12 +34,11 @@ def create_app(test_config=None):
     @app.route('/login-results')
     def login():
 
-        auth0.authorize_access_token()
-        # resp = auth0.get('userinfo')
-        # userinfo = resp.json()
+       
 
         return jsonify({
             'success': True
+            'Auth': request.get('token')
         })
 
        
