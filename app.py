@@ -45,15 +45,18 @@ def create_app(test_config=None):
 
     @app.route('/login-results')
     def login():
+        try:
+            auth0.authorize_access_token()
+            resp = auth0.get('userinfo')
+            userinfo = resp.json()
 
-        auth0.authorize_access_token()
-        resp = auth0.get('userinfo')
-        userinfo = resp.json()
+
+            return userinfo
+
+        except:
+            abort (400)
 
 
-        return jsonify(userinfo)
-
-        
     @app.route('/logout')
     def logout():
 
@@ -238,10 +241,10 @@ def create_app(test_config=None):
     @app.errorhandler(422)
     def unprocessable(error):
         return jsonify({
-                "success": False,
-                "error": 422,
-                "message": "unprocessable"
-                }), 422
+            'success': False,
+            'error': 422,
+            'message': 'unprocessable'
+            }), 422
 
     @app.errorhandler(404)
     def resource_not_found(error):
@@ -250,6 +253,14 @@ def create_app(test_config=None):
             'error': 404,
             'message': 'resource not found'
         }), 404
+
+    @app.errorhalder(400)
+    def error_with_login(error):
+        return jsonify({
+            'success': False,
+            'error': 400,
+            'message': 'error with login'
+        }),400
 
     return app
 
