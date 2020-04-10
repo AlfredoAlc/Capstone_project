@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, abort, json, redirect
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 import json
-import requests
+import http.client
 from auth import AuthError, requires_auth
 
 def create_app(test_config=None):
@@ -32,9 +32,18 @@ def create_app(test_config=None):
     @app.route('/login-results')
     def login():
 
-        res = requests.get('https://dev-kaf810lo.auth0.com/oauth/token')
+        conn = http.client.HTTPSConnection("")
 
-        return res.headers
+        payload = "grant_type=client_credentials&client_id=%24%7Baccount.clientId%7D&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency"
+
+        headers = { 'content-type': "application/x-www-form-urlencoded" }
+
+        conn.request("POST", "/dev-kaf810lo.auth0.com/oauth/token", payload, headers)
+
+        res = conn.getresponse()
+        data = res.read()
+
+        return data.decode("utf-8")
 
        
     @app.route('/logout')
