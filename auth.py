@@ -18,7 +18,9 @@ class AuthError(Exception):
 
 def get_token_auth_header():
 
-    auth = request.headers.get('Authorization', None)
+    # auth = request.headers.get('Authorization', None)
+
+    auth = request.headers.get('access_token', None)
 
     if not auth:
         raise AuthError({
