@@ -40,7 +40,7 @@ def create_app(test_config=None):
     def index():
 
 
-        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results&')
+        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
 
 
     @app.route('/login-results')
@@ -57,7 +57,7 @@ def create_app(test_config=None):
     @app.route('/logout')
     def logout():
 
-        return redirect('https://dev-kaf810lo.auth0.com/v2/logout?client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo=https://localhost:5000/')
+        return redirect('https://dev-kaf810lo.auth0.com/v2/logout?client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo=https://capstone-project-agency.herokuapp.com/')
 
 # ____________Movies endpoints____________
 
