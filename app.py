@@ -3,14 +3,27 @@ from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 import json
 from auth import AuthError, requires_auth
-import http.client
+from authlib.integrations.flask_client import OAuth
 
 def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
+    oauth = OAuth(app)
 
     # db_drop_and_create_all()
+
+    auth0 = oauth.register(
+        'auth0',
+        client_id='1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ',
+        client_secret='Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH',
+        api_base_url='https://dev-kaf810lo.auth0.com',
+        access_token_url='https://dev-kaf810lo.auth0.com/oauth/token',
+        authorize_url='https://dev-kaf810lo.auth0.com/authorize',
+        client_kwargs={
+            'scope': 'openid profile email',
+        },
+    )
 
     @app.after_request
     def after_request(response):
@@ -26,32 +39,24 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        return redirect('https://dev-kaf810lo.auth0.com/authorize?audience=agency&response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
+        return auth0.authorize_redirect(redirect_uri='https://capstone-project-agency.herokuapp.com/login-results')
 
 
     @app.route('/login-results')
     def login():
 
-        conn = http.client.HTTPSConnection("")
+        auth0.authorize_access_token()
+        resp = auth0.get('userinfo')
+        userinfo = resp.json()
 
-        payload = "{\"initiate_login_uri\": \"<login_url>\"}"
+        response['Authorization']=userinfo
+        return redirect('/movies')
 
-        headers = {
-        'content-type': "application/json",
-        'authorization': "Bearer API2_ACCESS_TOKEN",
-        'cache-control': "no-cache"
-        }
-
-        conn.request("PATCH", "/dev-kaf810lo.auth0.com/api/v2/clients/1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ", payload, headers)
-
-
-        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
-
-
+        
     @app.route('/logout')
     def logout():
 
-        return redirect('https://dev-kaf810lo.auth0.com/v2/logout?client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo=https://capstone-project-agency.herokuapp.com')
+        return redirect('https://dev-kaf810lo.auth0.com/v2/logout?client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo=https://localhost:5000/')
 
 # ____________Movies endpoints____________
 
