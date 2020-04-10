@@ -32,7 +32,7 @@ def create_app(test_config=None):
     @app.route('/login-results')
     def login():
 
-        res = request.get('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo&redirect_urihttps://localhost:5000/movies')
+        res = requests.get('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo&redirect_urihttps://localhost:5000/movies')
 
         return jsonify({
             'success': True,
