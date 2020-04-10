@@ -42,7 +42,7 @@ def create_app(test_config=None):
         'cache-control': "no-cache"
         }
 
-        conn.request("PATCH", "/dev-kaf810lo.auth0.com/api/v2/clients/1KaU8dYzCUMHaNy6RzexWuDpwyoE4hNE", payload, headers)
+        conn.request("PATCH", "/dev-kaf810lo.auth0.com/api/v2/clients/1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ", payload, headers)
 
 
         return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
