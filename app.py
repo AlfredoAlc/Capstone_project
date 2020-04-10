@@ -39,7 +39,7 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        return auth0.authorize_redirect(redirect_uri='https://capstone-project-agency.herokuapp.com/login-results')
+        return auth0.authorize_redirect(redirect_uri='/login-results')
 
 
     @app.route('/login-results')
