@@ -54,7 +54,9 @@ def create_app(test_config=None):
         token = 'Bearer ' + resp['id_token']
 
 
-        return redirect(url_for('show_movies', token = token))
+        return redirect(url_for('show_movies', headers = {
+                                'Authorization': token}
+                                ))
 
     @app.route('/logout')
     def logout():
