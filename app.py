@@ -54,7 +54,7 @@ def create_app(test_config=None):
         token = resp['id_token']
 
         returned_resp = redirect('/movies')
-        returned_resp.headers = {'Authorization': token}
+        returned_resp.headers.add('Authorization', token)
 
         return returned_resp
 
