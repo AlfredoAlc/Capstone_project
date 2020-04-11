@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, abort, json, redirect
+from flask import Flask, request, jsonify, abort, json, redirect, url_for
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 from auth import AuthError, requires_auth
@@ -52,14 +52,16 @@ def create_app(test_config=None):
     def login_results():
         
         auth0.authorize_access_token()
-        resp = auth0.get('authorization')
+
+        '''
+        resp = auth0.get('user_info')
         userinfo = resp.json()
 
         return jsonify({
             'user_info': userinfo
         })
-
-
+        '''
+        return redirect(url_for('show_movies'))
 
     @app.route('/logout')
     def logout():
