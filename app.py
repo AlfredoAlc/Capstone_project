@@ -33,7 +33,7 @@ def create_app(test_config=None):
     def login_results():
 
 
-        auth = request.headers.get('Authorization', None)
+        auth = request.headers.get('access_token', None)
 
 
         return jsonify({
