@@ -54,13 +54,6 @@ def create_app(test_config=None):
         resp = auth0.get('userinfo')
         userinfo = resp.json()
 
-        session['jwt_payload'] = userinfo
-        session['profile'] = {
-            'user_id': userinfo['sub'],
-            'name': userinfo['name'],
-            'picture': userinfo['picture']
-        }
-
         return jsonify({
             'user_info': userinfo
         })
