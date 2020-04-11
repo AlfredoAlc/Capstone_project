@@ -94,7 +94,7 @@ def create_app(test_config=None):
 
 # Show all movies
 
-    @app.route('/movies', methods=['GET'], headers={'Authorization': 'Bearer 29839852noierfBE3te'})
+    @app.route('/movies', methods=['GET'])
     @requires_auth('get:movies')
     def show_movies(token):
 
