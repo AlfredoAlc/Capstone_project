@@ -42,7 +42,7 @@ def create_app(test_config=None):
         GRANT_TYPE = "client_credentials" 
 
         # Get an Access Token from Auth0
-        base_url = "https://{domain}".format(domain=DOMAIN)
+        base_url = "https://dev-kaf810lo.auth0.com"
         data = urllib.parse.urlencode([('client_id', CLIENT_ID),
                             ('client_secret', CLIENT_SECRET),
                             ('audience', AUDIENCE),
