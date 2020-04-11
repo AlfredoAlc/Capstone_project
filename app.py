@@ -49,7 +49,7 @@ def create_app(test_config=None):
                             ('grant_type', GRANT_TYPE)])
 
 
-        response = urlopen(base_url + "/oauth/token" + data)
+        response = urlopen(f 'https://dev-kaf810lo.auth0.com/oauth/token' + data)
         oauth = json.loads(response.read())
         access_token = oauth['access_token']
 
