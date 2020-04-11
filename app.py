@@ -29,48 +29,13 @@ def create_app(test_config=None):
     
     def index():
 
-        AUDIENCE = "agency"
-        DOMAIN = "dev-kaf810lo.auth0.com"
-        CLIENT_ID = "1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ"
-        CLIENT_SECRET = "Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH"
-        GRANT_TYPE = "client_credentials" 
-
-        # Get an Access Token from Auth0
-        base_url = "https://dev-kaf810lo.auth0.com"
-        data = urllib.parse.urlencode([('client_id', CLIENT_ID),
-                            ('client_secret', CLIENT_SECRET),
-                            ('audience', AUDIENCE),
-                            ('grant_type', GRANT_TYPE)])
-
-
-        response = urlopen(f'https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
-        oauth = json.loads(response.read())
-        access_token = oauth['access_token']
-
-        return jsonify({
-            'access_token': access_token
-        })
-
-
+        return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
 
     @app.route('/login-results')
     def login_results():
 
-        AUDIENCE = "agency"
-        DOMAIN = "dev-kaf810lo.auth0.com"
-        CLIENT_ID = "1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ"
-        CLIENT_SECRET = "Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH"
-        GRANT_TYPE = "client_credentials" 
 
-        # Get an Access Token from Auth0
-        base_url = "https://dev-kaf810lo.auth0.com"
-        data = urllib.parse.urlencode([('client_id', CLIENT_ID),
-                            ('client_secret', CLIENT_SECRET),
-                            ('audience', AUDIENCE),
-                            ('grant_type', GRANT_TYPE)])
-
-
-        response = urlopen(f'https://dev-kaf810lo.auth0.com/oauth/token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency&grant_type=client_credentials')
+        response = urlopen(f'https://dev-kaf810lo.auth0.com/oauth/token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency&grant_type=authorization_code')
         oauth = json.loads(response.read())
         access_token = oauth['access_token']
 
