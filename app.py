@@ -84,7 +84,7 @@ def create_app(test_config=None):
 
         
         return jsonify({
-            'valio'=valio,
+            'valio': valio,
             'user_info': userinfo,
             'access_token': access_token,
             'authorization': authorization_str,
