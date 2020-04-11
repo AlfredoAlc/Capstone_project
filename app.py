@@ -8,6 +8,7 @@ from authlib.integrations.flask_client import OAuth
 
 def create_app(test_config=None):
     app = Flask(__name__)
+    app.secret_key = b'252_46dbr#'
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
