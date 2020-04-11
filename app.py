@@ -54,11 +54,11 @@ def create_app(test_config=None):
     def login_results():
 
 
-        token = auth0.authorize_access_token()
-
+        resp = auth0.authorize_access_token()
+        token = 'Bearer ' + resp['id_token']
 
         return jsonify({
-            'token': token['id_token']
+            'token': token
         })
 
         # return redirect(url_for('show_movies'))
