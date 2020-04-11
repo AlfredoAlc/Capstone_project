@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify, abort, json, redirect
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 from auth import AuthError, requires_auth
-import http.client
+import json, urllib
+from urllib.request import urlopen
+
 
 
 def create_app(test_config=None):
@@ -32,20 +34,31 @@ def create_app(test_config=None):
 
     @app.route('/login-results')
     def login_results():
-        conn = http.client.HTTPSConnection("")
 
-        payload = "grant_type=client_credentials&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency"
+        AUDIENCE = "agency""
+        DOMAIN = "dev-kaf810lo.auth0.com"
+        CLIENT_ID = "1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ"
+        CLIENT_SECRET = "Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH"
+        GRANT_TYPE = "client_credentials" 
 
-        headers = { 'content-type': "application/x-www-form-urlencoded" }
+        # Get an Access Token from Auth0
+        base_url = "https://{domain}".format(domain=DOMAIN)
+        data = urllib.urlencode([('client_id', CLIENT_ID),
+                            ('client_secret', CLIENT_SECRET),
+                            ('audience', AUDIENCE),
+                            ('grant_type', GRANT_TYPE)])
 
-        conn.request("POST", "/dev-kaf810lo.auth0.com/oauth/token", payload, headers)
 
-        res = conn.getresponse()
-        data = res.read()
+        response = urlopen(base_url + "/oauth/token", data)
+        oauth = json.loads(response.read())
+        access_token = oauth['access_token']
 
-        print(data.decode("utf-8"))
-        return data
-       
+        return jsonify({
+            'access_token': access_token
+        })
+
+
+
     @app.route('/logout')
     def logout():
 
