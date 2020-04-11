@@ -35,7 +35,7 @@ def create_app(test_config=None):
     @app.route('/login-results')
     def login_results():
 
-        AUDIENCE = "agency""
+        AUDIENCE = "agency"
         DOMAIN = "dev-kaf810lo.auth0.com"
         CLIENT_ID = "1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ"
         CLIENT_SECRET = "Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH"
