@@ -52,7 +52,7 @@ def create_app(test_config=None):
     def login_results():
         
         auth0.authorize_access_token()
-        resp = auth0.get('access_token')
+        resp = auth0.get('authorization')
         userinfo = resp.json()
 
         return jsonify({
