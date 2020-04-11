@@ -49,6 +49,7 @@ def create_app(test_config=None):
 
 
     @app.route('/login-results')
+    # @after_request('')
     def login_results():
         
         auth0.authorize_access_token()
@@ -57,6 +58,7 @@ def create_app(test_config=None):
         resp = auth0.get('userinfo')
         userinfo = resp.json()
 
+        '''
         try:
             resp = auth0.get('accesstoken')
             access_token = resp.json()
@@ -75,14 +77,18 @@ def create_app(test_config=None):
         except:
             bearer = 'no'
 
-
+        
         return jsonify({
             'user_info': userinfo,
             'access_token': access_token,
             'authorization': authorization_str,
             'bearer': bearer
         })
-        
+        '''
+        return jsonify({
+                    'user_info': userinfo
+                })
+
         # return redirect(url_for('show_movies'))
 
     @app.route('/logout')
