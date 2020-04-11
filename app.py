@@ -54,11 +54,11 @@ def create_app(test_config=None):
         auth0.authorize_access_token()
 
         
-        resp = auth0.get('user_info')
+        resp = auth0.get('userinfo')
         userinfo = resp.json()
 
         try:
-            resp = auth0.get('access_token')
+            resp = auth0.get('accesstoken')
             access_token = resp.json()
         except:
             access_token = 'no'
@@ -93,7 +93,8 @@ def create_app(test_config=None):
 # ____________Movies endpoints____________
 
 # Show all movies
-    @app.route('/movies', methods=['GET'])
+
+    @app.route('/movies', methods=['GET'], headers={'Authorization': 'Bearer 29839852noierfBE3te'})
     @requires_auth('get:movies')
     def show_movies(token):
 
