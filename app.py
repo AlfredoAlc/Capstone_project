@@ -54,7 +54,7 @@ def create_app(test_config=None):
         token = 'Bearer ' + resp['id_token']
 
 
-        return redirect(url_for('show_movies', token))
+        return redirect(url_for('show_movies', token = token))
 
     @app.route('/logout')
     def logout():
