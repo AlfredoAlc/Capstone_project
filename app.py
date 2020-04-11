@@ -3,6 +3,7 @@ from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 from auth import AuthError, requires_auth
 import json
+from authlib.integrations.flask_client import OAuth
 
 
 def create_app(test_config=None):
