@@ -54,42 +54,11 @@ def create_app(test_config=None):
     def login_results():
 
 
-        try:
-            token = auth0.authorize_access_token()
-        except:
-            token ='no'
-        
-        try:        
-            resp = auth0.get('userinfo')
-            userinfo = resp.json()
-        except:
-            userinfo='no'
-        
-        try:
-            resp = auth0.get('accesstoken')
-            access_token = resp.json()
-        except:
-            access_token = 'no'
+        token = auth0.authorize_access_token()
 
-        try:
-            resp = auth0.get('authorization')
-            authorization_str = resp.json()
-        except:
-            authorization_str = 'no'
 
-        try:
-            resp = auth0.get('Bearer')
-            bearer = resp.json()
-        except:
-            bearer = 'no'
-
-        
         return jsonify({
-            'token': token,
-            'user_info': userinfo,
-            'access_token': access_token,
-            'authorization': authorization_str,
-            'bearer': bearer
+            'token': token['id_token']
         })
 
         # return redirect(url_for('show_movies'))
