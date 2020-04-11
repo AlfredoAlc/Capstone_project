@@ -52,12 +52,12 @@ def create_app(test_config=None):
 
         resp = auth0.authorize_access_token()
         token = resp['id_token']
-
+        '''
         url_init = redirect('/movies')
         returned_resp = after_request(url_init)
         returned_resp.headers.add('Authorization', token)
-
-        return returned_resp
+        '''
+        return request.get('/movies', headers={'Authorization': token})
 
     @app.route('/logout')
     def logout():
