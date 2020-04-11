@@ -43,9 +43,10 @@ def create_app(test_config=None):
     
     def index():
 
-       return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
+       # return redirect('https://dev-kaf810lo.auth0.com/authorize?response_type=token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&redirect_uri=https://capstone-project-agency.herokuapp.com/login-results')
 
-       # return auth0.authorize_redirect(redirect_uri='https://capstone-project-agency.herokuapp.com/login-results')
+
+        return auth0.authorize_redirect(redirect_uri='https://capstone-project-agency.herokuapp.com/login-results')
 
 
     @app.route('/login-results')
@@ -54,9 +55,9 @@ def create_app(test_config=None):
 
 
         try:
-            auth0.authorize_access_token()
+            token = auth0.authorize_access_token()
         except:
-            valio='valio'
+            token ='no'
         
         try:        
             resp = auth0.get('userinfo')
@@ -84,7 +85,7 @@ def create_app(test_config=None):
 
         
         return jsonify({
-            'valio': valio,
+            'token': token,
             'user_info': userinfo,
             'access_token': access_token,
             'authorization': authorization_str,
