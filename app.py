@@ -53,8 +53,9 @@ def create_app(test_config=None):
         resp = auth0.authorize_access_token()
         token = resp['id_token']
 
-        returned_resp = redirect('/movies')
+        returned_resp = None
         returned_resp.headers.add('Authorization', token)
+        returned_resp = redirect('/movies')
 
         return returned_resp
 
