@@ -53,14 +53,8 @@ def create_app(test_config=None):
         resp = auth0.authorize_access_token()
         token = 'Bearer ' + resp['id_token']
 
-        request.headers.add('Authorization': token)
 
-        return jsonify({
-            'token': token
-            'Auth': request.headers.get('Authorization')
-        })
-
-        # return redirect(url_for('show_movies'))
+        return redirect(url_for('show_movies', token))
 
     @app.route('/logout')
     def logout():
