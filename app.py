@@ -43,7 +43,7 @@ def create_app(test_config=None):
 
         # Get an Access Token from Auth0
         base_url = "https://{domain}".format(domain=DOMAIN)
-        data = urllib.urlencode([('client_id', CLIENT_ID),
+        data = urllib.parse.urlencode([('client_id', CLIENT_ID),
                             ('client_secret', CLIENT_SECRET),
                             ('audience', AUDIENCE),
                             ('grant_type', GRANT_TYPE)])
