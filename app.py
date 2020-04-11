@@ -57,9 +57,7 @@ def create_app(test_config=None):
         
         resp = auth0.get('userinfo')
         userinfo = resp.json()
-
-
-        '''
+        
         try:
             resp = auth0.get('accesstoken')
             access_token = resp.json()
@@ -85,10 +83,6 @@ def create_app(test_config=None):
             'authorization': authorization_str,
             'bearer': bearer
         })
-        '''
-        return jsonify({
-                    'user_info': userinfo
-                })
 
         # return redirect(url_for('show_movies'))
 
