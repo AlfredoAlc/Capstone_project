@@ -35,7 +35,7 @@ def create_app(test_config=None):
     def login_results():
 
 
-        response = urlopen(f'https://dev-kaf810lo.auth0.com/oauth/token&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&audience=agency&grant_type=authorization_code')
+        response = urlopen(f'https://dev-kaf810lo.auth0.com/oauth/token&grant_type=authorization_code&client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&client_secret=Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH&code=AUTHORIZATION_CODE&redirect_uri=https://capstone-project-agency.herokuapp.com/movies')
         oauth = json.loads(response.read())
         access_token = oauth['access_token']
 
