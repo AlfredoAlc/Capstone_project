@@ -10,6 +10,20 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+    oauth = OAuth(app)
+
+    auth0 = oauth.register(
+        'auth0',
+        client_id='1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ',
+        client_secret='Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH',
+        api_base_url='https://dev-kaf810lo.auth0.com',
+        access_token_url='https://dev-kaf810lo.auth0.com/oauth/token',
+        authorize_url='https://dev-kaf810lo.auth0.com/authorize',
+        client_kwargs={
+            'scope': 'openid profile email',
+        },
+    )
+
     # db_drop_and_create_all()
 
    
@@ -31,13 +45,20 @@ def create_app(test_config=None):
 
     @app.route('/login-results')
     def login_results():
+        
+        auth0.authorize_access_token()
+        resp = auth0.get('userinfo')
+        userinfo = resp.json()
 
-
-        auth = request.headers.get('access_token', None)
-
+        session['jwt_payload'] = userinfo
+        session['profile'] = {
+            'user_id': userinfo['sub'],
+            'name': userinfo['name'],
+            'picture': userinfo['picture']
+        }
 
         return jsonify({
-            'access_token': auth
+            'user_info': userinfo
         })
 
 
