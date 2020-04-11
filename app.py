@@ -57,7 +57,7 @@ def create_app(test_config=None):
         token_header.add_header('Authorization', token)
 
 
-        return redirect(url_for('show_movies', token_header)
+        return redirect(url_for('show_movies', token_header))
 
     @app.route('/logout')
     def logout():
