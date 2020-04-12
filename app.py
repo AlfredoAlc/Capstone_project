@@ -59,7 +59,7 @@ def create_app(test_config=None):
 
         
         return jsonify({
-            'token' = token_selected
+            'token': token_selected
         })
         # return redirect(requests.get('https://capstone-project-agency.herokuapp.com/movies', headers={'Authorization': token_selected}))
 
