@@ -15,6 +15,32 @@ class AuthError(Exception):
         self.error = error
         self.status_code = status_code
 
+def get_token_auth_header():
+
+    auth = request.headers.get('Authorization', None)
+
+    if not auth:
+        raise AuthError({
+            'code': 'authorization_header_missing',
+            'description': 'No authorization header'
+        }, 401)
+
+    auth_parts = auth.split(' ')
+    if auth_parts[0].lower() != 'bearer':
+        raise AuthError({
+            'code': 'invalid_header',
+            'description': 'Authorization header must start with bearer'
+        }, 401)
+
+    elif len(auth_parts) == 1:
+        raise AuthError({
+            'code': 'invalid_header',
+            'description': 'Authorization header does not contain token'
+        }, 401)
+
+    token = auth_parts[1]
+    return token
+
 
 def check_permissions(permission, payload):
 
@@ -84,11 +110,13 @@ def verify_decode_jwt(token):
     }, 400)
 
 
-def requires_auth(permission='', token=''):
+def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):
             
+            token = get_token_auth_header()
+
             try:
                 payload = verify_decode_jwt(token)
             except:

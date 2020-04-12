@@ -126,7 +126,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data['movies'])
-
+'''
     def test_fail_show_movies(self):
         res = self.client().get('/movies')
 
@@ -250,7 +250,7 @@ class AgencyTestCase(unittest.TestCase):
                                        })
 
         self.assertEqual(res.status_code, 404)
-
+'''
 
 if __name__ == "__main__":
     unittest.main()

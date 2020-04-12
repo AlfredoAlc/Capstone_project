@@ -12,7 +12,6 @@ def create_app(test_config=None):
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
-    excecutive_producer_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4N2NhY2NmMjNiYzIwYmYwY2IxY2MwIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzE2ODEyLCJleHAiOjE1ODY4MDMyMTIsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.g37SthiFGoydV0F1KZ4DqktEcAMmUwrIwKN54O_yhzUQFXU7N27RrOxmvR1ZrGq4JUBY2shyC90eQLfWklexPyd841R7gbBnT51e6lMIyr8Brs9Ozgj_P6neZESTdc241IHEz9CrcAurNLhhTw4CkW4aVKjnjyShMktXaEzR--j9dZIyaOt0WOx58wla5OicmnMwsqZ-rrFFjb_KEH9bRdjA7qZTY7FAmelQBiYFv2FxAIu7rJNgytzNLohOO9VSWwnBT9hRsgL1RAKbYLf7KUhOlcikDltoq_ynsWMsBAHV0zxWZ0qV1mTv9WL_jTOBtbs4ZSfZXZZZSJRXy-vNEQ'
 
     # db_drop_and_create_all()
 
@@ -29,15 +28,17 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        # return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token}))
-        return redirect(url_for('show_actors'))
+        excecutive_producer_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4N2NhY2NmMjNiYzIwYmYwY2IxY2MwIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzE2ODEyLCJleHAiOjE1ODY4MDMyMTIsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.g37SthiFGoydV0F1KZ4DqktEcAMmUwrIwKN54O_yhzUQFXU7N27RrOxmvR1ZrGq4JUBY2shyC90eQLfWklexPyd841R7gbBnT51e6lMIyr8Brs9Ozgj_P6neZESTdc241IHEz9CrcAurNLhhTw4CkW4aVKjnjyShMktXaEzR--j9dZIyaOt0WOx58wla5OicmnMwsqZ-rrFFjb_KEH9bRdjA7qZTY7FAmelQBiYFv2FxAIu7rJNgytzNLohOO9VSWwnBT9hRsgL1RAKbYLf7KUhOlcikDltoq_ynsWMsBAHV0zxWZ0qV1mTv9WL_jTOBtbs4ZSfZXZZZSJRXy-vNEQ'
+
+        return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token}))
+        # return redirect(url_for('show_actors'))
        
 # ____________Movies endpoints____________
 
 # Show all movies
 
     @app.route('/movies', methods=['GET'])
-    @requires_auth('get:movies', excecutive_producer_token)
+    @requires_auth('get:movies')
     def show_movies(token):
 
         try:
@@ -53,7 +54,7 @@ def create_app(test_config=None):
 
 # Add new movie
     @app.route('/movies', methods=['POST'])
-    @requires_auth('post:movies', excecutive_producer_token)
+    @requires_auth('post:movies')
     def add_movie(token):
 
         try:
@@ -78,7 +79,7 @@ def create_app(test_config=None):
 
 # Update a selected movie
     @app.route('/movies/<movie_id>', methods=['PATCH'])
-    @requires_auth('patch:movies', excecutive_producer_token)
+    @requires_auth('patch:movies')
     def update_movie(token, movie_id):
 
         try:
@@ -105,7 +106,7 @@ def create_app(test_config=None):
 
 # Delete selected movie
     @app.route('/movies/<movie_id>', methods=['DELETE'])
-    @requires_auth('delete:movies', excecutive_producer_token)
+    @requires_auth('delete:movies')
     def delete_movie(token, movie_id):
 
         try:
@@ -125,7 +126,7 @@ def create_app(test_config=None):
     
 
     @app.route('/actors', methods=['GET'])
-    @requires_auth('get:actors', excecutive_producer_token)
+    @requires_auth('get:actors')
     def show_actors(token):
 
         try:
@@ -141,7 +142,7 @@ def create_app(test_config=None):
 
 # Add new actor
     @app.route('/actors', methods=['POST'])
-    @requires_auth('post:actors', excecutive_producer_token)
+    @requires_auth('post:actors')
     def add_actor(token):
 
         try:
@@ -164,7 +165,7 @@ def create_app(test_config=None):
 
 # Update a selected actor
     @app.route('/actors/<actor_id>', methods=['PATCH'])
-    @requires_auth('patch:actors', excecutive_producer_token)
+    @requires_auth('patch:actors')
     def update_actor(token, actor_id):
 
         try:
@@ -195,7 +196,7 @@ def create_app(test_config=None):
 
 # Delete selected actor
     @app.route('/actors/<actor_id>', methods=['DELETE'])
-    @requires_auth('delete:actors', excecutive_producer_token)
+    @requires_auth('delete:actors')
     def delete_actor(token, actor_id):
 
         try:
