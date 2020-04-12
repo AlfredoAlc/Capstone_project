@@ -29,6 +29,11 @@ def create_app(test_config=None):
 
     # db_drop_and_create_all()
 
+    def get_token_auth():
+        resp = auth0.authorize_access_token()
+        token_selected = "Bearer " + resp['id_token']
+
+        return token_selected
    
     @app.after_request
     def after_request(response):
@@ -50,8 +55,7 @@ def create_app(test_config=None):
     @app.route('/login-results')
     def login_results():
 
-        resp = auth0.authorize_access_token()
-        token_selected = "Bearer " + resp['id_token']
+        token_selected = get_token_auth()
 
         
         
@@ -253,7 +257,6 @@ def create_app(test_config=None):
             'success': False,
             'error': 404,
             'message': 'resource not found',
-            'token':token_selected
         }), 404
 
     return app
