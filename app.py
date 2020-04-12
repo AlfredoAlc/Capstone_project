@@ -126,7 +126,7 @@ def create_app(test_config=None):
 
     @app.route('/actors', methods=['GET'])
     # @requires_auth('get:actors')
-    def show_actors(token):
+    def show_actors():
 
         try:
             data = Actors.query.all()
