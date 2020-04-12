@@ -58,8 +58,10 @@ def create_app(test_config=None):
         token_selected = get_token_auth()
 
         
-        
-        return redirect(requests.get('https://capstone-project-agency.herokuapp.com/movies', headers={'Authorization': token_selected}))
+        return jsonify({
+            'token' = token_selected
+        })
+        # return redirect(requests.get('https://capstone-project-agency.herokuapp.com/movies', headers={'Authorization': token_selected}))
 
     @app.route('/logout')
     def logout():
