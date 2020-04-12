@@ -32,8 +32,8 @@ def create_app(test_config=None):
     def get_token_auth():
         resp = auth0.authorize_access_token()
     
-        token_selected = "Bearer " + resp['access_token']
-
+        # token_selected = "Bearer " + resp['access_token']
+        token_selected = Token.query_by_access_token(resp['access_token'])
         return token_selected
    
     @app.after_request
