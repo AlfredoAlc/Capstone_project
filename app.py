@@ -13,7 +13,7 @@ def create_app(test_config=None):
 
 
 
-    db_drop_and_create_all()
+    # db_drop_and_create_all()
 
     @app.after_request
     def after_request(response):
@@ -29,7 +29,7 @@ def create_app(test_config=None):
     def index():
 
         excecutive_producer_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4N2NhY2NmMjNiYzIwYmYwY2IxY2MwIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzE2ODEyLCJleHAiOjE1ODY4MDMyMTIsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.g37SthiFGoydV0F1KZ4DqktEcAMmUwrIwKN54O_yhzUQFXU7N27RrOxmvR1ZrGq4JUBY2shyC90eQLfWklexPyd841R7gbBnT51e6lMIyr8Brs9Ozgj_P6neZESTdc241IHEz9CrcAurNLhhTw4CkW4aVKjnjyShMktXaEzR--j9dZIyaOt0WOx58wla5OicmnMwsqZ-rrFFjb_KEH9bRdjA7qZTY7FAmelQBiYFv2FxAIu7rJNgytzNLohOO9VSWwnBT9hRsgL1RAKbYLf7KUhOlcikDltoq_ynsWMsBAHV0zxWZ0qV1mTv9WL_jTOBtbs4ZSfZXZZZSJRXy-vNEQ'
-        return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token, 'Content-Type': 'Text'}))
+        return redirect(requests.get('/actors', headers={'Authorization': excecutive_producer_token, 'Content-Type': 'Text'}))
         #return redirect(url_for('show_actors'))
        
 # ____________Movies endpoints____________
