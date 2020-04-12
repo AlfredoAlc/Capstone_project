@@ -52,8 +52,10 @@ def create_app(test_config=None):
 
         resp = auth0.authorize_access_token()
         token_selected = resp['id_token']
+
         
-        return redirect(url_for('show_movies', token_selected))
+        
+        return requests.get('/movies', auth=token_selected)
 
     @app.route('/logout')
     def logout():
