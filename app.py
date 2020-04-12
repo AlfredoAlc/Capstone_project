@@ -13,6 +13,7 @@ def create_app(test_config=None):
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     oauth = OAuth(app)
+    token_selected = ''
 
     auth0 = oauth.register(
         'auth0',
