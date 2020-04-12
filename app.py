@@ -27,7 +27,7 @@ def create_app(test_config=None):
         },
     )
 
-    db_drop_and_create_all()
+    # db_drop_and_create_all()
 
    
     @app.after_request
@@ -51,7 +51,7 @@ def create_app(test_config=None):
     def login_results():
 
         resp = auth0.authorize_access_token()
-        token_selected = resp['id_token']
+        token_selected = "Bearer " + resp['id_token']
 
         
         
