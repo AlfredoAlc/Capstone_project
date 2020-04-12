@@ -1,4 +1,4 @@
-import json
+import json, requests
 from flask import request, abort
 from functools import wraps
 from jose import jwt
@@ -17,7 +17,7 @@ class AuthError(Exception):
 
 def get_token_auth_header():
 
-    auth = request.headers.get('Authorization', None)
+    auth = requests.headers.get('Authorization', None)
 
     if not auth:
         raise AuthError({
