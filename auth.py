@@ -14,7 +14,6 @@ class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
-'''
 
 def get_token_auth_header():
 
@@ -41,7 +40,7 @@ def get_token_auth_header():
 
     token = auth_parts[1]
     return token
-'''
+
 
 def check_permissions(permission, payload):
 
@@ -111,11 +110,11 @@ def verify_decode_jwt(token):
     }, 400)
 
 
-def requires_auth(permission='', token=''):
+def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):
-            # token = get_token_auth_header()
+            token = get_token_auth_header()
 
             try:
                 payload = verify_decode_jwt(token)
