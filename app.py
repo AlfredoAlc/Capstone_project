@@ -253,6 +253,7 @@ def create_app(test_config=None):
             'success': False,
             'error': 404,
             'message': 'resource not found'
+            'token':token_selected
         }), 404
 
     return app
