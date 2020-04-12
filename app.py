@@ -31,7 +31,7 @@ def create_app(test_config=None):
 
     def get_token_auth():
         token = auth0.authorize_access_token()
-        resp = auth0.get('account/verify_credentials.json')
+        resp = auth0.get('access_token')
 
         return resp
    
