@@ -29,15 +29,15 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token}))
-
+        # return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token}))
+        return redirect(url_for('show_movies'))
        
 # ____________Movies endpoints____________
 
 # Show all movies
 
     @app.route('/movies', methods=['GET'])
-    @requires_auth('get:movies')
+    @requires_auth('get:movies', excecutive_producer_token)
     def show_movies(token):
 
         try:
@@ -53,7 +53,7 @@ def create_app(test_config=None):
 
 # Add new movie
     @app.route('/movies', methods=['POST'])
-    @requires_auth('post:movies')
+    @requires_auth('post:movies', excecutive_producer_token)
     def add_movie(token):
 
         try:
@@ -78,7 +78,7 @@ def create_app(test_config=None):
 
 # Update a selected movie
     @app.route('/movies/<movie_id>', methods=['PATCH'])
-    @requires_auth('patch:movies')
+    @requires_auth('patch:movies', excecutive_producer_token)
     def update_movie(token, movie_id):
 
         try:
@@ -105,7 +105,7 @@ def create_app(test_config=None):
 
 # Delete selected movie
     @app.route('/movies/<movie_id>', methods=['DELETE'])
-    @requires_auth('delete:movies')
+    @requires_auth('delete:movies', excecutive_producer_token)
     def delete_movie(token, movie_id):
 
         try:
@@ -125,7 +125,7 @@ def create_app(test_config=None):
     
 
     @app.route('/actors', methods=['GET'])
-    # @requires_auth('get:actors')
+    @requires_auth('get:actors', excecutive_producer_token)
     def show_actors():
 
         try:
@@ -141,7 +141,7 @@ def create_app(test_config=None):
 
 # Add new actor
     @app.route('/actors', methods=['POST'])
-    @requires_auth('post:actors')
+    @requires_auth('post:actors', excecutive_producer_token)
     def add_actor(token):
 
         try:
@@ -164,7 +164,7 @@ def create_app(test_config=None):
 
 # Update a selected actor
     @app.route('/actors/<actor_id>', methods=['PATCH'])
-    @requires_auth('patch:actors')
+    @requires_auth('patch:actors', excecutive_producer_token)
     def update_actor(token, actor_id):
 
         try:
@@ -195,7 +195,7 @@ def create_app(test_config=None):
 
 # Delete selected actor
     @app.route('/actors/<actor_id>', methods=['DELETE'])
-    @requires_auth('delete:actors')
+    @requires_auth('delete:actors', excecutive_producer_token)
     def delete_actor(token, actor_id):
 
         try:
