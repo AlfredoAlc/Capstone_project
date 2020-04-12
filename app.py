@@ -30,8 +30,9 @@ def create_app(test_config=None):
     # db_drop_and_create_all()
 
     def get_token_auth():
-        token = auth0.authorize_access_token()
-        resp = auth0.get('access_token')
+        resp = auth0.authorize_access_token()
+    
+        token_selected = "Bearer " + resp['access_token']
 
         return resp
    
