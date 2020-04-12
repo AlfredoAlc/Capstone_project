@@ -130,7 +130,7 @@ def create_app(test_config=None):
             #actors = [Actors.format(actor) for actor in data]
             return jsonify({
                'success': True,
-               'actors': 'yes''
+               'actors': 'yes'
             })
         except Exception:
             abort(404)
