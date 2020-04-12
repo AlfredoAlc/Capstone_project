@@ -51,12 +51,9 @@ def create_app(test_config=None):
     def login_results():
 
         resp = auth0.authorize_access_token()
-        token = resp['id_token']
+        token_selected = resp['id_token']
         
-        movie_response = redirect('/movies')
-        movie_response.headers.add('Authorization', token)
-        
-        return movie_response
+        return redirect(url_for('show_movies'))
 
     @app.route('/logout')
     def logout():
@@ -68,7 +65,7 @@ def create_app(test_config=None):
 # Show all movies
 
     @app.route('/movies', methods=['GET'])
-    @requires_auth('get:movies')
+    @requires_auth('get:movies', token_selected)
     def show_movies(token):
 
         try:
