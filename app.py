@@ -30,7 +30,7 @@ def create_app(test_config=None):
     def index():
 
         # return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token}))
-        return redirect(url_for('show_movies'))
+        return redirect(url_for('show_actors'))
        
 # ____________Movies endpoints____________
 
@@ -126,7 +126,7 @@ def create_app(test_config=None):
 
     @app.route('/actors', methods=['GET'])
     @requires_auth('get:actors', excecutive_producer_token)
-    def show_actors():
+    def show_actors(token):
 
         try:
             data = Actors.query.all()
