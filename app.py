@@ -3,7 +3,6 @@ from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 from auth import AuthError, requires_auth
 import json, requests
-from authlib.integrations.flask_client import OAuth
 
 
 def create_app(test_config=None):
@@ -12,30 +11,9 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-    oauth = OAuth(app)
-
-    auth0 = oauth.register(
-        'auth0',
-        client_id='1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ',
-        client_secret=
-            'Obt6SyQLE3N2CPk5_smtCPMidjmwu7yMJ-nWEUIoUNqGZ8-2HAlh6Pan63cejdqH',
-        api_base_url='https://dev-kaf810lo.auth0.com',
-        access_token_url='https://dev-kaf810lo.auth0.com/oauth/token',
-        authorize_url='https://dev-kaf810lo.auth0.com/authorize',
-        client_kwargs={
-            'scope': 'openid profile email',
-        },
-    )
-
+  
     # db_drop_and_create_all()
 
-    def get_token_auth():
-        resp = auth0.authorize_access_token()
-    
-        # token_selected = "Bearer " + resp['access_token']
-        token_selected = auth0.query_by_access_token(resp['access_token'])
-        return token_selected
-   
     @app.after_request
     def after_request(response):
 
@@ -49,30 +27,10 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        #return auth0.authorize_redirect(
-         #   redirect_uri='https://capstone-project-agency.herokuapp.com/login-results')
+        excecutive_producer_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4N2NhY2NmMjNiYzIwYmYwY2IxY2MwIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzE2ODEyLCJleHAiOjE1ODY4MDMyMTIsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.g37SthiFGoydV0F1KZ4DqktEcAMmUwrIwKN54O_yhzUQFXU7N27RrOxmvR1ZrGq4JUBY2shyC90eQLfWklexPyd841R7gbBnT51e6lMIyr8Brs9Ozgj_P6neZESTdc241IHEz9CrcAurNLhhTw4CkW4aVKjnjyShMktXaEzR--j9dZIyaOt0WOx58wla5OicmnMwsqZ-rrFFjb_KEH9bRdjA7qZTY7FAmelQBiYFv2FxAIu7rJNgytzNLohOO9VSWwnBT9hRsgL1RAKbYLf7KUhOlcikDltoq_ynsWMsBAHV0zxWZ0qV1mTv9WL_jTOBtbs4ZSfZXZZZSJRXy-vNEQ'
 
-        token_selected = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4N2NhY2NmMjNiYzIwYmYwY2IxY2MwIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzE2ODEyLCJleHAiOjE1ODY4MDMyMTIsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.g37SthiFGoydV0F1KZ4DqktEcAMmUwrIwKN54O_yhzUQFXU7N27RrOxmvR1ZrGq4JUBY2shyC90eQLfWklexPyd841R7gbBnT51e6lMIyr8Brs9Ozgj_P6neZESTdc241IHEz9CrcAurNLhhTw4CkW4aVKjnjyShMktXaEzR--j9dZIyaOt0WOx58wla5OicmnMwsqZ-rrFFjb_KEH9bRdjA7qZTY7FAmelQBiYFv2FxAIu7rJNgytzNLohOO9VSWwnBT9hRsgL1RAKbYLf7KUhOlcikDltoq_ynsWMsBAHV0zxWZ0qV1mTv9WL_jTOBtbs4ZSfZXZZZSJRXy-vNEQ'
+        return redirect(requests.get('https://capstone-project-agency.herokuapp.com/movies', headers={'Authorization': excecutive_producer_token}))
 
-        return redirect(requests.head('https://capstone-project-agency.herokuapp.com/movies', headers={'Authorization': token_selected, 'Content-Type': 'Text'}))
-
-
-
-    @app.route('/login-results')
-    def login_results():
-
-        token_selected = get_token_auth()
-
-        
-        return jsonify({
-            'token': token_selected
-        })
-        # return redirect(requests.get('https://capstone-project-agency.herokuapp.com/movies', headers={'Authorization': token_selected}))
-
-    @app.route('/logout')
-    def logout():
-
-        return redirect('https://dev-kaf810lo.auth0.com/v2/logout?client_id=1qF6usDkR4DAJT9usLfPEP29zLy5ILfZ&returnTo=https://capstone-project-agency.herokuapp.com/')
 
 # ____________Movies endpoints____________
 
