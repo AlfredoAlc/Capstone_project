@@ -29,7 +29,8 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token}))
+        #return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token}))
+        return redirect(url_for('show_actors'))
 
 # ____________Movies endpoints____________
 
