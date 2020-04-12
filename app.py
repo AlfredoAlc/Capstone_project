@@ -34,7 +34,7 @@ def create_app(test_config=None):
     
         token_selected = "Bearer " + resp['access_token']
 
-        return resp
+        return token_selected
    
     @app.after_request
     def after_request(response):
