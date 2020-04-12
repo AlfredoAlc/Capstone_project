@@ -32,7 +32,7 @@ def create_app(test_config=None):
         # return redirect(requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token}))
 
         res = redirect(url_for('show_actors'))
-        res.headers = {'Authorization': excecutive_producer_token}
+        res.headers['Authorization'] = excecutive_producer_token
         return res
 
 # ____________Movies endpoints____________
