@@ -33,7 +33,7 @@ def create_app(test_config=None):
         token = auth0.authorize_access_token()
         resp = auth0.get('account/verify_credentials.json')
 
-        return resp.json()
+        return resp
    
     @app.after_request
     def after_request(response):
