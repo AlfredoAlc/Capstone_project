@@ -30,10 +30,10 @@ def create_app(test_config=None):
     # db_drop_and_create_all()
 
     def get_token_auth():
-        resp = auth0.authorize_access_token()
-        token_selected = "Bearer " + resp['id_token']
+        token = auth0.authorize_access_token()
+        resp = auth0.get('account/verify_credentials.json')
 
-        return resp
+        return resp.json()
    
     @app.after_request
     def after_request(response):
