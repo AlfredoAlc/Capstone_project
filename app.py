@@ -36,9 +36,9 @@ def create_app(test_config=None):
 
 # Show all movies
 
+    # @requires_auth('get:movies')
     @app.route('/movies', methods=['GET'])
-    @requires_auth('get:movies')
-    def show_movies(token):
+    def show_movies():
 
         try:
             data = Movies.query.all()
