@@ -55,7 +55,7 @@ def create_app(test_config=None):
 
         
         
-        return requests.get('/movies', auth=token_selected)
+        return requests.get('/movies', headers={'Authorization': token_selected})
 
     @app.route('/logout')
     def logout():
