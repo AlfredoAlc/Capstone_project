@@ -13,7 +13,6 @@ def create_app(test_config=None):
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     oauth = OAuth(app)
-    token_selected = ''
 
     auth0 = oauth.register(
         'auth0',
@@ -54,7 +53,7 @@ def create_app(test_config=None):
         resp = auth0.authorize_access_token()
         token_selected = resp['id_token']
         
-        return redirect(url_for('show_movies'))
+        return redirect(url_for('show_movies', token_selected))
 
     @app.route('/logout')
     def logout():
@@ -66,7 +65,7 @@ def create_app(test_config=None):
 # Show all movies
 
     @app.route('/movies', methods=['GET'])
-    @requires_auth('get:movies', token_selected)
+    @requires_auth('get:movies')
     def show_movies(token):
 
         try:
