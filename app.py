@@ -31,7 +31,7 @@ def create_app(test_config=None):
         r = requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token, 'Content-Type': 'Text'})
 
         return jsonify({
-           'r': r.text
+           'r': r
         })
        
 # ____________Movies endpoints____________
