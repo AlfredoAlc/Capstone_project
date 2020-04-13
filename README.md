@@ -20,8 +20,6 @@ To run the application run the following commands:
 export FLASK_APP=app.py
 flask run
 ```
-The application is run on `http://127.0.0.1:5000/` by default and is a proxy in the frontend configuration. 
-
 The heroku URL is https://capstone-project-agency.herokuapp.com/
 
 ### Test

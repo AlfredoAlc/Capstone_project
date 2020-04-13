@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify, abort, json, redirect, url_for
 from flask_cors import CORS
 from models import setup_db, Movies, Actors, db_drop_and_create_all
 from auth import AuthError, requires_auth
-import json, requests
+import json
+import requests
 
 
 def create_app(test_config=None):
@@ -11,9 +12,7 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-    
     # db_drop_and_create_all()
-
     @app.after_request
     def after_request(response):
 
@@ -27,11 +26,38 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
 
-        excecutive_producer_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4N2NhY2NmMjNiYzIwYmYwY2IxY2MwIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzE2ODEyLCJleHAiOjE1ODY4MDMyMTIsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.g37SthiFGoydV0F1KZ4DqktEcAMmUwrIwKN54O_yhzUQFXU7N27RrOxmvR1ZrGq4JUBY2shyC90eQLfWklexPyd841R7gbBnT51e6lMIyr8Brs9Ozgj_P6neZESTdc241IHEz9CrcAurNLhhTw4CkW4aVKjnjyShMktXaEzR--j9dZIyaOt0WOx58wla5OicmnMwsqZ-rrFFjb_KEH9bRdjA7qZTY7FAmelQBiYFv2FxAIu7rJNgytzNLohOO9VSWwnBT9hRsgL1RAKbYLf7KUhOlcikDltoq_ynsWMsBAHV0zxWZ0qV1mTv9WL_jTOBtbs4ZSfZXZZZSJRXy-vNEQ'
-        r = requests.get('https://capstone-project-agency.herokuapp.com/actors', headers={'Authorization': excecutive_producer_token, 'Content-Type': 'Text'})
+        excecutive_producer_token = ('Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpX'
+                                     'VCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5'
+                                     'DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1'
+                                     'FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1r'
+                                     'YWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV'
+                                     '0aDB8NWU4M2ZmNzM2YjI2OWEwYmRjMDhjYWFkIi'
+                                     'wiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzQwN'
+                                     'TkwLCJleHAiOjE1ODY4MjY5OTAsImF6cCI6IjFx'
+                                     'RjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZ'
+                                     'aIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6Wy'
+                                     'JkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllc'
+                                     'yIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwi'
+                                     'cGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiw'
+                                     'icG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ'
+                                     '.OF5dAoM7rBTyv7v8pdUohFJ7QyoC2ic__Haf73'
+                                     'eQ23UilrGqT7b_vFQH8uL8pTNXLyErcXVLBQ-tq'
+                                     'R2Ko7LAVbBPSWiXjTSRPvTXuoBLqGwZQLpU1yu3'
+                                     'wcyB9fHyHqGOAM9WHqThP-h2xuV2fgtMluZwfhv'
+                                     'Z-zUpUy9wgaxp6dOZf6wpxndLut483QzOgF5bfe'
+                                     'TOXOpqU2amZzQDXOXjIxTv_r5aUuMUXopIEDgxU'
+                                     'QGFp7pQzoWUOOITS1Ei7bHd0wGXNk1TOshFXgWw'
+                                     'BTS1Wne2izLMVIJNNQmCVqLj9nMHFmYcBX1BZrR'
+                                     '0msbQEBmjWLVjyczjwaEgtofi8tihig')
+
+        proyect_url = 'https://capstone-project-agency.herokuapp.com/movies'
+
+        r = requests.get(proyect_url,
+                         headers={'Authorization': excecutive_producer_token,
+                                  'Content-Type': 'Text'})
 
         return r.text
-       
+
 # ____________Movies endpoints____________
 
 # Show all movies
@@ -122,8 +148,6 @@ def create_app(test_config=None):
 # ____________Actors endpoints____________
 
 # Show all actors
-    
-
     @app.route('/actors', methods=['GET'])
     @requires_auth('get:actors')
     def show_actors(token):

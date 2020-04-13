@@ -95,13 +95,13 @@
 							"raw": "{\n    \"title\": \"Tomorrowland\",\n    \"release_date\": \"August 25, 2001\"\n}"
 						},
 						"url": {
-							"raw": "{{host}}/movies/2",
+							"raw": "{{host}}/movies/99",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"2"
+								"99"
 							]
 						},
 						"description": "Update movies on database"
@@ -283,7 +283,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4M2ZmNzM2YjI2OWEwYmRjMDhjYWFkIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2Mzg3MDQyLCJleHAiOjE1ODY0NzM0NDIsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.XJEBjc2qJT8rC24TszQmWFaeJFfnWpDwJv7ZwIhysfku5ej5rD0yT7VtXRPQXNcPrVXiuAekZXZM9fFIpfkll8M3bpZh8TqtCRO079RAUAoNkkWj1LlR1pn49nFU3nVtsS3pJYLA5zvUPdMQ9B_RK-Az5AULP_EXqE_r7T3fKzvIpjl2tkgiBYN9Bt4cSjAErh1yxfFvxdWUYt3EiMhVADyLqIbtupx9lyi8S9Qlj5ThfqJr8nqoTjF5AuDeofe5SIlDs0wMWe3oJopfMrMatv4lX6pcdbHS9PBADdcWsMjAoMlcMNAbCl6v5mTc2t9fD1B6St01vOFnn_TTW2V5ug",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4M2ZmNzM2YjI2OWEwYmRjMDhjYWFkIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzQwNTkwLCJleHAiOjE1ODY4MjY5OTAsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.OF5dAoM7rBTyv7v8pdUohFJ7QyoC2ic__Haf73eQ23UilrGqT7b_vFQH8uL8pTNXLyErcXVLBQ-tqR2Ko7LAVbBPSWiXjTSRPvTXuoBLqGwZQLpU1yu3wcyB9fHyHqGOAM9WHqThP-h2xuV2fgtMluZwfhvZ-zUpUy9wgaxp6dOZf6wpxndLut483QzOgF5bfeTOXOpqU2amZzQDXOXjIxTv_r5aUuMUXopIEDgxUQGFp7pQzoWUOOITS1Ei7bHd0wGXNk1TOshFXgWwBTS1Wne2izLMVIJNNQmCVqLj9nMHFmYcBX1BZrR0msbQEBmjWLVjyczjwaEgtofi8tihig",
 						"type": "string"
 					}
 				]
@@ -589,7 +589,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4N2NhY2NmMjNiYzIwYmYwY2IxY2MwIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2Mzg3MTc3LCJleHAiOjE1ODY0NzM1NzcsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.HvP2KVaQmXmOtzH05Qol7ORsgOQMTDSLJy9gJVN9dBtdgBu1Z6d_sabkLvE4TUKkyNwCRk_J3XH3Yr4XJ1mJfDZArZ_cxn1m23cX0cezWDYwOfHiH9hKUvzdKyXgLDQviGVUZK6kQAQuONSxzlnJ5ICQgfBx5htTdMZFIp8WYHOmmzW83WeFasblOByPvxw--S89VdfZR0Dj1bC0yiCu3jtMn8nK0sPlNrZy4pscC9evHcj2A9-VGNctSaKgYrKOnt4VMLU3qteX0qKR7HjR4MxT02wjl_WyqXxqpQQdy5kMOGfy9zExN5g5bp3ZtgV6bgJ3CIRBZ_F7gMFdGscTtg",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4N2NhY2NmMjNiYzIwYmYwY2IxY2MwIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzQwNzQzLCJleHAiOjE1ODY4MjcxNDMsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.AH5CHv9KgJLrB-plUSOPL_E_eyszhI2hHHOUlxnyqKc1pZrsO7fqxwYhn1TbDu8k4TFKDyTTyugXCclCUrtik1n8Cs61nOtnVqQUtLKMdJM79K4o8-fNDR4ClxYSFlZh7LkJuopi5Kr2aAWjNLkN4bsz1jrIMtP3N74--yRpHVxjiv80AqmYR8OL0nYiU-f1iCdnFy9__QUHjN2qs70fjbxaLifOHYpL4f507aJLrtbmVaTsJtOz8gflbeaIWTMyAli8Q-B7YE-KAyuvOn4K4bCT8aUAKUrotHd1DhD7ohbfJyvrmNasfiCvP2dwJUTto-5WcrFBP4pB9iC60RA_QQ",
 						"type": "string"
 					}
 				]
@@ -792,7 +792,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Peter\",\n    \"age\": 27,\n    \"gender\": \"male\"\n}",
+							"raw": "{\n    \"name\": \"Jhon\",\n    \"age\": 27,\n    \"gender\": \"male\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -895,7 +895,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4Y2ViNjBhYjY2MTEwYzBhMWU4ODAyIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2Mzg3Mjc0LCJleHAiOjE1ODY0NzM2NzQsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyJdfQ.m6IeNHJBDdzn3JdStt7pznC_sFh0y3ASMx2YDu9ZRjEGO82fnISn1zCd-OSBQ__AiFcmqR60HtRKl8hShufkfo_bLuXeCxg9NKrNgXuQAAbLYEqPwGpxUdIE7c_3sbO7-k5iZXDfaZxe31YQP0kIzoYOUlnGmKyQTXWT7ePdTW5GxzWk3F0AOQGd0Dh4q686CwFFvfoKtMr5OkgJu7cgp-ONWu9BMtDCFzgwyeG4itli8a05yJmtpdtyBJodkfwzGOC2Xds_utPPZKBcFaWbnXFRi89vPgQcl3ukJyD1ak4xrf2xs4jXf0q2-BaRuT_tWHE1jDdWkINiI1sqxtdF9Q",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5qSTJOVFJHT0VSQ01FUXlPVU5DUVVVM09EQTRSREJCUmtVeE5rRTBPVEZFT1VJM1FUUTRPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rYWY4MTBsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU4Y2ViNjBhYjY2MTEwYzBhMWU4ODAyIiwiYXVkIjoiYWdlbmN5IiwiaWF0IjoxNTg2NzQwODA2LCJleHAiOjE1ODY4MjcyMDYsImF6cCI6IjFxRjZ1c0RrUjREQUpUOXVzTGZQRVAyOXpMeTVJTGZaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyJdfQ.ZrCyd-2II5fbsoLcs6nW_LGA6GZ5isHcPhZQcuH35Tw4WDBeJY3HBKp7TGBhVGdE6t2GB40ZbM8kl42JuWcUR4l8fIPTdAtNvwtRvtuFqscJo62DHAdfV4V01nsFyjmzfQCP5OKlhR7Drv0kQH2ESfb2ZkfC84wrHLVdo1DCuYZQvdbB_q7S4ckheY1apBUUJzQ9FUu_e29jTgyaXEZ5pmsX6m8oUdgcW6COpUBzXJPLVhTnzTNo6mW_zzFFrkK-9N3QRp13thxFVwYU4a0Rpht3qSUth7QuWpt4i1plyqiTqHgfKz8QNBAZN-snh-uOMHcjgMzthwuqxbchH6oqGw",
 						"type": "string"
 					}
 				]
@@ -949,9 +949,9 @@
 	],
 	"variable": [
 		{
-			"id": "e3a0aa3b-a9c9-4630-a23d-def5a39f6069",
+			"id": "a3cf8f56-8161-49a1-88c2-88af7609d7dc",
 			"key": "host",
-			"value": "localhost:5000",
+			"value": "https://capstone-project-agency.herokuapp.com",
 			"type": "string"
 		}
 	],
